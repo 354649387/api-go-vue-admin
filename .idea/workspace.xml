@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c61eb7a5-d439-489f-a4ec-ec85acae091f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/admin/List.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/Helper.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
+    <list default="true" id="c61eb7a5-d439-489f-a4ec-ec85acae091f" name="Default Changelist" comment="路由模式换成app模式">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/admin/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/admin/handler.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +90,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="路由模式换成app模式" />
+    <option name="LAST_COMMIT_MESSAGE" value="路由模式换成app模式" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
