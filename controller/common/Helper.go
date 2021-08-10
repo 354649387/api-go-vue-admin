@@ -5,12 +5,11 @@ import (
 	"time"
 )
 
-func RandWord() string{
+func RandWord() string {
 
-	slices := []string{"中文","中文1","中文2","中文3","中文4"}
+	slices := []string{"中文", "中文1", "中文2", "中文3", "中文4"}
 
 	len := len(slices)
-
 
 	rand.Seed(time.Now().UnixNano())
 
