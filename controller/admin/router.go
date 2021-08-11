@@ -14,6 +14,8 @@ func Routers(e *gin.Engine) {
 		admin.GET("/list", adminList)
 		//管理员新增页面
 		admin.GET("/add", adminAdd)
+		//管理员搜索页面
+		admin.GET("/search", adminSearch)
 
 	}
 

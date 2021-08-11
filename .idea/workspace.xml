@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c61eb7a5-d439-489f-a4ec-ec85acae091f" name="Default Changelist" comment="路由模式换成app模式">
+    <list default="true" id="c61eb7a5-d439-489f-a4ec-ec85acae091f" name="Default Changelist" comment="管理员更新，分页功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/admin/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/admin/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/admin/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/admin/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +61,7 @@
       <recent name="D:\go_pro\api-go-vue-adimin\controller" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Build.go build main.go">
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="api-go-vue-adimin" />
       <working_directory value="$PROJECT_DIR$" />
@@ -69,9 +70,19 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
+    <configuration name="go build router.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="api-go-vue-adimin" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/controller/admin/router.go" />
+      <package value="api-go-vue-admin" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build main.go" />
+        <item itemvalue="Go Build.go build router.go" />
       </list>
     </recent_temporary>
   </component>
@@ -93,7 +104,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="路由模式换成app模式" />
-    <option name="LAST_COMMIT_MESSAGE" value="路由模式换成app模式" />
+    <MESSAGE value="管理员更新，分页功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="管理员更新，分页功能" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
