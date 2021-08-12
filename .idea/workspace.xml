@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c61eb7a5-d439-489f-a4ec-ec85acae091f" name="Default Changelist" comment="管理员更新，分页功能">
+    <list default="true" id="c61eb7a5-d439-489f-a4ec-ec85acae091f" name="Default Changelist" comment="搜索简易版">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/admin/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/admin/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/admin/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/admin/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysqli/connect.go" beforeDir="false" afterPath="$PROJECT_DIR$/mysqli/connect.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +106,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="路由模式换成app模式" />
     <MESSAGE value="管理员更新，分页功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="管理员更新，分页功能" />
+    <MESSAGE value="搜索简易版" />
+    <option name="LAST_COMMIT_MESSAGE" value="搜索简易版" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

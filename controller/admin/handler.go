@@ -41,9 +41,9 @@ func adminList(c *gin.Context) {
 	var admins []Admin
 
 	//第几页
-	page := c.Query("page")
+	page := c.DefaultQuery("page", "1")
 	//每页显示多少
-	pageSize := c.Query("pageSize")
+	pageSize := c.DefaultQuery("pageSize", "10")
 
 	//字符串转成数字类型
 	page1, _ := strconv.Atoi(page)
