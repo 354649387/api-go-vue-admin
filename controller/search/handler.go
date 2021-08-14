@@ -1,4 +1,4 @@
-package article
+package search
 
 import (
 	"api-go-vue-admin/mysqli"
@@ -14,13 +14,15 @@ type Article struct {
 	Status int    `json:"status" form:"status"`
 }
 
-func articleList(c *gin.Context) {
+func searchArticle(c *gin.Context) {
 
 	Db := mysqli.Connect()
 
 	var article []Article
 
-	err := Db.Select(&article, "select * from article")
+	title := c.Query("title")
+
+	err := Db.Select(&article, "select * from article where title=?", title)
 
 	if err != nil {
 		fmt.Println("select * from article失败")

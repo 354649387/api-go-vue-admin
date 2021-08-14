@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c61eb7a5-d439-489f-a4ec-ec85acae091f" name="Default Changelist" comment="搜索简易版">
+    <list default="true" id="c61eb7a5-d439-489f-a4ec-ec85acae091f" name="Default Changelist" comment="优化">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/admin/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/admin/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/article/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/article/handler.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysqli/connect.go" beforeDir="false" afterPath="$PROJECT_DIR$/mysqli/connect.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +46,7 @@
     <property name="configurable..is.expanded" value="false" />
     <property name="configurable.GoLibrariesConfigurable.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/controller" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/controller/search" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -59,6 +58,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\go_pro\api-go-vue-adimin\controller\search" />
       <recent name="D:\go_pro\api-go-vue-adimin\controller" />
     </key>
   </component>
@@ -107,7 +107,8 @@
     <MESSAGE value="路由模式换成app模式" />
     <MESSAGE value="管理员更新，分页功能" />
     <MESSAGE value="搜索简易版" />
-    <option name="LAST_COMMIT_MESSAGE" value="搜索简易版" />
+    <MESSAGE value="优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
