@@ -2,7 +2,6 @@ package search
 
 import (
 	"api-go-vue-admin/mysqli"
-	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,20 +15,38 @@ type Article struct {
 
 func searchArticle(c *gin.Context) {
 
-	Db := mysqli.Connect()
+	//获取查询条件
+	title := c.Query("title")
+	cid := c.Query("cid")
+	aid := c.Query("aid")
+
+	//连接数据库
+	db := mysqli.GormConnect()
 
 	var article []Article
 
-	title := c.Query("title")
+	tx := db.Table("article")
 
-	err := Db.Select(&article, "select * from article where title=?", title)
-
-	if err != nil {
-		fmt.Println("select * from article失败")
+	//判断查询条件
+	if title != "" {
+		tx.Where("title = ?", title)
+	}
+	if cid != "" {
+		tx.Where("cid = ?", cid)
+	}
+	if aid != "" {
+		tx.Where("aid = ?", aid)
 	}
 
+	//存入链式查询结果
+	tx.Find(&article)
+
+	//结果条数
+	rows := tx.RowsAffected
+
 	c.JSON(200, gin.H{
-		"articleList": article,
+		"searchList": article,
+		"total":      rows,
 	})
 
 }
