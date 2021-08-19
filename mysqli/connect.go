@@ -26,7 +26,7 @@ func Connect() *sqlx.DB {
 func GormConnect() *gorm.DB {
 
 	//连接数据库
-	dsn := "root:root@tcp(127.0.0.1:3306)/go_vue_admin"
+	dsn := "root:root@tcp(127.0.0.1:3306)/go_vue_admin?charset=utf8&parseTime=true&loc=Local"
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 

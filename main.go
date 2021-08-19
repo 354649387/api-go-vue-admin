@@ -8,6 +8,7 @@ import (
 	"api-go-vue-admin/controller/upload"
 	"api-go-vue-admin/middleware"
 	"api-go-vue-admin/router"
+	"net/http"
 )
 
 func main() {
@@ -16,6 +17,8 @@ func main() {
 	router.Include(admin.Routers, category.Routers, article.Routers, search.Routers, upload.Routers)
 	// 初始化路由
 	r := router.Init()
+	//定义访问图片的路径   /upload代表的就是统计目录下的upload文件夹
+	r.StaticFS("/upload", http.Dir("./upload"))
 	//使用跨域中间件
 	r.Use(middleware.Cors())
 	//绑定程序运行端口
