@@ -12,6 +12,7 @@ func Routers(e *gin.Engine) {
 		article.GET("/update", update)
 		article.GET("/delete", delete)
 		article.GET("/getArticleById", getArticleById)
+		article.GET("/getCategory", getCategory)
 	}
 
 }

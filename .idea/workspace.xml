@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c61eb7a5-d439-489f-a4ec-ec85acae091f" name="Default Changelist" comment="新增文章功能">
+    <list default="true" id="c61eb7a5-d439-489f-a4ec-ec85acae091f" name="Default Changelist" comment="文章删除功能，文章编辑功能，一些优化">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/article/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/article/handler.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/article/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/article/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysqli/connect.go" beforeDir="false" afterPath="$PROJECT_DIR$/mysqli/connect.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +63,23 @@
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build main.go">
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="api-go-vue-adimin" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build handler.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="api-go-vue-adimin" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/controller/article/handler.go" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="api-go-vue-adimin" />
       <working_directory value="$PROJECT_DIR$" />
@@ -82,9 +97,20 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="api-go-vue-adimin" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="DIRECTORY" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build main.go" />
+        <item itemvalue="Go Build.go build handler.go" />
         <item itemvalue="Go Build.go build router.go" />
       </list>
     </recent_temporary>
@@ -112,7 +138,8 @@
     <MESSAGE value="优化" />
     <MESSAGE value="搜索基本功能添加" />
     <MESSAGE value="新增文章功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增文章功能" />
+    <MESSAGE value="文章删除功能，文章编辑功能，一些优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="文章删除功能，文章编辑功能，一些优化" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

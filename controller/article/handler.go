@@ -12,16 +12,75 @@ type Article struct {
 	Id        int            `json:"id" form:"id"`
 	Title     string         `json:"title" form:"title"`
 	Img       string         `json:"img" form:"img"`
-	Content   string         `json:"content" form:"content"`
 	Cid       int            `json:"cid" form:"cid"`
 	Aid       int            `json:"aid" form:"aid"`
+	Content   string         `json:"content" form:"content"`
 	Status    int            `json:"status" form:"status"`
 	DeletedAt gorm.DeletedAt `json:"deleted_at" form:"deleted_at" gorm:"column:deleted_at"`
+}
+
+type Category struct {
+	Id   int    `form:"id" json:"id"`
+	Name string `form:"name" json:"name"`
+	Pid  int    `form:"pid" json:"pid"`
+}
+
+type TreeList struct {
+	Id   int    `form:"id" json:"id"`
+	Name string `form:"name" json:"name"`
+	Pid  int    `form:"pid" json:"pid"`
+	//子类下面可能也有子类，所以要用CategoryList的指针
+	//Children []*TreeList  `json:"children"`
 }
 
 //绑定表名
 func (a Article) TableName() string {
 	return "article"
+}
+
+//获取栏目列表
+func getCategory(c *gin.Context) {
+
+	categoryList := getCategoryTree(0)
+	//getCategoryTree(0)
+	c.JSON(200, gin.H{
+		"categoryList": categoryList,
+		//"categoryList":"success",
+	})
+
+}
+
+func getCategoryTree(pid int) []*TreeList {
+
+	db := mysqli.GormConnect()
+
+	//存放从数据库取出的所有栏目
+	var category []Category
+
+	//得到所有列表结果
+	db.Table("category").Find(&category)
+
+	var treeSlice []*TreeList
+
+	for _, v := range category {
+
+		if v.Pid != 0 {
+			v.Name = "|-" + v.Name
+		}
+
+		node := &TreeList{
+
+			Id:   v.Id,
+			Name: v.Name,
+			Pid:  v.Pid,
+		}
+
+		treeSlice = append(treeSlice, node)
+
+	}
+
+	return treeSlice
+
 }
 
 //文章删除 软删除
@@ -46,9 +105,13 @@ func add(c *gin.Context) {
 
 	title := c.Query("title")
 	img := c.Query("img")
+	cid, _ := strconv.Atoi(c.Query("cid"))
 	content := c.Query("content")
+	aid, _ := strconv.Atoi(c.Query("aid"))
 
-	article := Article{Title: title, Img: img, Content: content}
+	fmt.Println(c.Query("aid"))
+
+	article := Article{Title: title, Img: img, Cid: cid, Aid: aid, Content: content}
 
 	db := mysqli.GormConnect()
 	tx := db.Table("article")
@@ -71,12 +134,16 @@ func update(c *gin.Context) {
 	title := c.Query("title")
 	img := c.Query("img")
 	content := c.Query("content")
+	cid, _ := strconv.Atoi(c.Query("cid"))
+	aid, _ := strconv.Atoi(c.Query("aid"))
 
 	//通过结构体变量设置更新字段
 	article := Article{
 		Title:   title,
 		Img:     img,
 		Content: content,
+		Cid:     cid,
+		Aid:     aid,
 	}
 
 	db := mysqli.GormConnect()
@@ -117,6 +184,7 @@ func getArticleById(c *gin.Context) {
 
 //文章列表
 func articleList(c *gin.Context) {
+
 	db := mysqli.GormConnect()
 
 	var article []Article
@@ -146,94 +214,6 @@ func articleList(c *gin.Context) {
 
 	c.JSON(200, gin.H{
 		"articleList": article,
-		"total":       total,
-	})
-
-}
-func articleList4(c *gin.Context) {
-
-	db := mysqli.GormConnect()
-
-	var article []Article
-
-	//第几页
-	page := c.DefaultQuery("page", "1")
-	//每页显示多少
-	pageSize := c.DefaultQuery("pageSize", "10")
-
-	//字符串转成数字类型
-	page1, _ := strconv.Atoi(page)
-	pageSize1, _ := strconv.Atoi(pageSize)
-
-	offsetNum := (page1 - 1) * pageSize1
-
-	//limit：多少个，offset从哪个开始
-	tx := db.Table("article")
-
-	//id 倒叙排列
-	tx.Order("id DESC")
-
-	tx.Limit(pageSize1).Offset(offsetNum)
-
-	tx.Find(&article)
-
-	//article表总记录数
-	tx1 := db.Table("article")
-
-	var count int64
-
-	tx1.Count(&count)
-
-	c.JSON(200, gin.H{
-		"articleList": article,
-		"total":       count,
-	})
-
-}
-
-func articleList1(c *gin.Context) {
-
-	Db := mysqli.Connect()
-
-	//第几页
-	page := c.DefaultQuery("page", "1")
-	//每页显示多少
-	pageSize := c.DefaultQuery("pageSize", "10")
-
-	//字符串转成数字类型
-	page1, _ := strconv.Atoi(page)
-	pageSize1, _ := strconv.Atoi(pageSize)
-
-	offsetNum := (page1 - 1) * pageSize1
-
-	var total int64
-
-	err := Db.QueryRow("select count(*) from article").Scan(&total)
-
-	if err != nil {
-		fmt.Println("select count(*) from article失败", err)
-	}
-
-	rows, _ := Db.Query("select * from article limit ?,?", offsetNum, pageSize1)
-
-	var articles []Article
-
-	var article Article
-
-	for rows.Next() {
-
-		err := rows.Scan(&article.Id, &article.Title, &article.Cid, &article.Aid, &article.Status)
-
-		if err != nil {
-			fmt.Println("rows.Next()->rows.Scan失败", err)
-		}
-
-		articles = append(articles, article)
-
-	}
-
-	c.JSON(200, gin.H{
-		"articleList": articles,
 		"total":       total,
 	})
 
