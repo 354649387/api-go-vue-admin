@@ -13,6 +13,12 @@ type Article struct {
 	Status int    `json:"status" form:"status"`
 }
 
+type Admin struct {
+	Id       int    `json:"id" form:"id"`
+	Username string `json:"username" form:"username"`
+	Password string `json:"password" form:"password"`
+}
+
 func searchArticle(c *gin.Context) {
 
 	//获取查询条件
@@ -46,6 +52,36 @@ func searchArticle(c *gin.Context) {
 
 	c.JSON(200, gin.H{
 		"searchList": article,
+		"total":      rows,
+	})
+
+}
+
+func searchAdmin(c *gin.Context) {
+
+	//获取查询条件
+	username := c.Query("username")
+
+	//连接数据库
+	db := mysqli.GormConnect()
+
+	var admin []Admin
+
+	tx := db.Table("admin")
+
+	//判断查询条件
+	if username != "" {
+		tx.Where("username = ?", username)
+	}
+
+	//存入链式查询结果
+	tx.Find(&admin)
+
+	//结果条数
+	rows := tx.RowsAffected
+
+	c.JSON(200, gin.H{
+		"searchList": admin,
 		"total":      rows,
 	})
 

@@ -1,19 +1,22 @@
 package admin
 
 import (
+	"api-go-vue-admin/mysqli"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
+	"gorm.io/gorm"
 	"strconv"
 )
 
 var Db *sqlx.DB
 
 type Admin struct {
-	Id       int    `json:"id" form:"id"`
-	Username string `json:"username" form:"username"`
-	Password string `json:"password" form:"password"`
+	Id        int            `json:"id" form:"id"`
+	Username  string         `json:"username" form:"username"`
+	Password  string         `json:"password" form:"password"`
+	DeletedAt gorm.DeletedAt `json:"deleted_at" form:"deleted_at" gorm:"column:deleted_at"`
 }
 
 //搜索条件结构体
@@ -35,10 +38,15 @@ func init() {
 
 }
 
+func (a Admin) TableName() string {
+	return "admin"
+}
+
 func adminList(c *gin.Context) {
 
-	//创建一个切片存放一条条的结构体
-	var admins []Admin
+	db := mysqli.GormConnect()
+
+	var admin []Admin
 
 	//第几页
 	page := c.DefaultQuery("page", "1")
@@ -51,33 +59,28 @@ func adminList(c *gin.Context) {
 
 	offsetNum := (page1 - 1) * pageSize1
 
-	//总条数
-	var total int64
+	tx := db.Offset(offsetNum).Limit(pageSize1).Order("id DESC").Find(&admin)
 
-	err := Db.QueryRow("select count(*) from admin").Scan(&total)
+	var total int64 = 0
 
-	if err != nil {
-		fmt.Println("获取总条数失败")
+	db.Model(Admin{}).Count(&total)
+
+	//total := tx.RowsAffected
+
+	if tx.Error != nil {
+		fmt.Println("查询所有文章列表失败", tx.Error)
 	}
 
-	rows, _ := Db.Query("select * from admin limit ?,?", offsetNum, pageSize1)
-
-	//遍历
-	var admin Admin
-
-	for rows.Next() {
-
-		rows.Scan(&admin.Id, &admin.Username, &admin.Password)
-
-		admins = append(admins, admin)
-
-	}
-
-	c.JSON(200, gin.H{"admins": admins, "total": total})
+	c.JSON(200, gin.H{
+		"adminList": admin,
+		"total":     total,
+	})
 
 }
 
 func adminAdd(c *gin.Context) {
+
+	//原生写法，暂未改成gorm写法
 
 	username := c.Query("username")
 
@@ -154,4 +157,69 @@ func adminSearch(c *gin.Context) {
 		"total": total,
 	})
 
+}
+
+func adminDelete(c *gin.Context) {
+
+	id := c.Query("id")
+	fmt.Println(id)
+	admin := Admin{}
+
+	db1 := mysqli.GormConnect()
+
+	db1.Where("id = ?", id).Take(&admin)
+
+	db1.Delete(&admin)
+
+	c.JSON(200, "success")
+
+}
+
+//通过id获取管理员详情
+func getAdminById(c *gin.Context) {
+
+	id := c.Query("id")
+
+	db := mysqli.GormConnect()
+
+	admin := Admin{}
+
+	res := db.Where("id = ?", id).Take(&admin)
+
+	if res.Error != nil {
+
+		fmt.Println(res.Error)
+
+	}
+
+	c.JSON(200, gin.H{
+		"adminList": admin,
+	})
+
+}
+
+//管理员更新
+func update(c *gin.Context) {
+
+	id := c.Query("id")
+	username := c.Query("username")
+	password := c.Query("password")
+
+	//通过结构体变量设置更新字段
+	admin := Admin{
+		Username: username,
+		Password: password,
+	}
+
+	db := mysqli.GormConnect()
+
+	re := db.Model(&Admin{}).Where("id = ?", id).Updates(&admin)
+
+	if re.Error != nil {
+
+		fmt.Println(re.Error)
+
+	}
+
+	c.JSON(200, "success")
 }

@@ -8,6 +8,7 @@ func Routers(e *gin.Engine) {
 
 	{
 		article.GET("/article", searchArticle)
+		article.GET("/admin", searchAdmin)
 	}
 
 }

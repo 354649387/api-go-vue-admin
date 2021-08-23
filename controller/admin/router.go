@@ -16,7 +16,10 @@ func Routers(e *gin.Engine) {
 		admin.GET("/add", adminAdd)
 		//管理员搜索页面
 		admin.GET("/search", adminSearch)
-
+		//删除管理员
+		admin.GET("/delete", adminDelete)
+		admin.GET("/update", update)
+		admin.GET("/getAdminById", getAdminById)
 	}
 
 }
